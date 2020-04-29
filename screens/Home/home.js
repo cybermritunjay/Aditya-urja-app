@@ -1,18 +1,21 @@
 import React from 'react';
-import {View,Text,Button} from 'native-base';
-import {logout}  from '../../services/Auth/actions'
-
+import {View,Text,Button,Container} from 'native-base';
+import MainHeader from '../../common/components/Header/header'
+import {logout} from '../../services/Auth/actions'
 const Home = (props) =>{
-    const onPressHandler =() =>{
-        logout()
-      }
+
     return(
-        <View>
+        
+        <Container>
+            <MainHeader />
+            <Content>
             <Text>Home</Text>
             <Button onPress={()=>props.navigation.navigate('Profile')}><Text>Go To Profile</Text></Button>
-            <Button onPress={()=>onPressHandler()} ><Text>LogOut Now</Text></Button>
-            <Button onPress={() => props.navigation.openDrawer()} ><Text>Menu</Text></Button>
-        </View>
+            <Button transparent onPress={()=> logout()}>
+              <Text >out</Text>
+            </Button>
+            </Content>
+        </Container>
     )
 }
 

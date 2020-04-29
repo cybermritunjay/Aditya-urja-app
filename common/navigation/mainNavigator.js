@@ -1,20 +1,26 @@
 import React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerItem, DrawerItemList, DrawerContentScrollView } from '@react-navigation/drawer';
 import HomeScreen from '../../screens/Home/home';
 import NewComplaintScreen from '../../screens/CreateComplaint/createComplaint'
 import ProfileScreen from '../../screens/Profile/profile';
+import CustomDrawer from '../components/Drawer/drawer'
+import transitionConfig from '../../services/config/transactionConfig';
 
 const MainDrawer = createDrawerNavigator()
-
 const MainNavigator = () => {
     return (
-        <MainDrawer.Navigator>
+        <MainDrawer.Navigator
+            drawerType='slide'
+            screenOptions={
+                transitionConfig
+            }
+            drawerContent={props => <CustomDrawer {...props} />}>
             <MainDrawer.Screen
                 name="Home"
                 component={HomeScreen}
             />
             <MainDrawer.Screen
-                name="NewComplaint"
+                name="New Complaint"
                 component={NewComplaintScreen}
             />
             <MainDrawer.Screen

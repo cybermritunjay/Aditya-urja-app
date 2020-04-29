@@ -3,15 +3,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../../screens/Login/login'
 import RegisterScreen from '../../screens/Register/register'
 import ForgetPasswordScreen from '../../screens/ForgetPassword/forgetPassword'
-
+import transitionConfig from '../../services/config/transactionConfig';
 const AuthStack = createStackNavigator()
 
 const AuthNavigator = () => {
     return (
-        <AuthStack.Navigator>
+        <AuthStack.Navigator
+        screenOptions={
+            {
+                ...transitionConfig
+            }
+        }
+        >
             <AuthStack.Screen
                 name="Login"
-                component={LoginScreen}                
+                component={LoginScreen}               
             />
             <AuthStack.Screen
                 name="Register"

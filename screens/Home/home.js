@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text,Button,Container} from 'native-base';
+import {Text,Button,Container,Content} from 'native-base';
 import MainHeader from '../../common/components/Header/header'
 import {logout} from '../../services/Auth/actions'
 const Home = (props) =>{

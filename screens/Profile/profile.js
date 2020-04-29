@@ -1,13 +1,15 @@
 import React from 'react';
-import {View,Text,Button} from 'native-base';
+import {View,Text,Button,Container,Content} from 'native-base';
 import MainHeader from '../../common/components/Header/header'
 const Profile = (props) =>{
     return(
-        <View>
+        <Container>
             <MainHeader />
+            <Content>
             <Text>Profile</Text>
             <Button onPress={()=>props.navigation.navigate('New Complaint')}><Text>Go To NewComplaint</Text></Button>
-        </View>
+        </Content>
+        </Container>
     )
 }
 

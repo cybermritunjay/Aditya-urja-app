@@ -4,16 +4,13 @@ import HomeScreen from '../../screens/Home/home';
 import NewComplaintScreen from '../../screens/CreateComplaint/createComplaint'
 import ProfileScreen from '../../screens/Profile/profile';
 import CustomDrawer from '../components/Drawer/drawer'
-import transitionConfig from '../../services/config/transactionConfig';
 
 const MainDrawer = createDrawerNavigator()
 const MainNavigator = () => {
     return (
         <MainDrawer.Navigator
             drawerType='slide'
-            screenOptions={
-                transitionConfig
-            }
+
             drawerContent={props => <CustomDrawer {...props} />}>
             <MainDrawer.Screen
                 name="Home"

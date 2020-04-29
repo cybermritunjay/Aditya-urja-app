@@ -11,7 +11,8 @@ const AuthNavigator = () => {
         <AuthStack.Navigator
         screenOptions={
             {
-                ...transitionConfig
+                headerShown:false,
+               //...transitionConfig
             }
         }
         >

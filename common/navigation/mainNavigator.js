@@ -10,7 +10,6 @@ const MainNavigator = () => {
     return (
         <MainDrawer.Navigator
             drawerType='slide'
-
             drawerContent={props => <CustomDrawer {...props} />}>
             <MainDrawer.Screen
                 name="Home"

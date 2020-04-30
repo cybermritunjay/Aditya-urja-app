@@ -1,5 +1,5 @@
 import {ServerAddress,Authorization} from './config/config'
-export const api = (payload,endpoint) =>{ 
+const api = async (payload,endpoint) =>{ 
     const options = {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
@@ -10,12 +10,13 @@ export const api = (payload,endpoint) =>{
         },
         body: payload != null ? JSON.stringify(payload):{},
     }
-    return (
-        fetch(`${serverAddress}/${endpoint}`,options)
-        .then((response) => response.json())
-        .then((data) =>{
-            return data
-        }).catch((error) =>{
+    try{
+        let response = await fetch(`${ServerAddress}/${endpoint}`,options);
+        let json = await response.json()
+        console.log(json)
+        return json
+    }catch(error){
             throw error
-    }))
+    }
 }
+export default api

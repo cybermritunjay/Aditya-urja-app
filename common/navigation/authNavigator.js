@@ -12,7 +12,6 @@ const AuthNavigator = () => {
         screenOptions={
             {
                 headerShown:false,
-               //...transitionConfig
             }
         }
         >

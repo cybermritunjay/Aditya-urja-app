@@ -1,22 +1,79 @@
-import React from 'react';
-import {View,Text,Button} from 'native-base';
-
-import {login}  from '../../services/Auth/actions'
-
-
-const Login = (props) =>{
-    const onPressHandler =() =>{
-      login()
-      //console.log(useSelector(state => !!state.user))
+import React, { useState } from 'react';
+import { Image, View } from 'react-native';
+import { Container, Content, Button, Text, Form, Item as FormItem, Input, Label, Spinner } from 'native-base';
+import FormMessage from '../../common/components/FormMessage/form-message';
+import { login } from '../../services/Auth/actions'
+import styles from './styles';
+export default function Login({ navigation }) {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const onClickLogin = async () => {
+        setLoading(true)
+        setError('');
+        let fetchResult = await login({ email, password })
+        console.log(fetchResult)
+        if (fetchResult.success) {
+            setError('')
+            setLoading(false)
+        } else {
+            setError(fetchResult.error)
+            setLoading(false)
+        }
     }
-
-    return(
-        <View>
-            <Text>Login</Text>
-            <Button onPress={()=>props.navigation.navigate('Register')}><Text>Go To Register</Text></Button>
-            <Button onPress={()=>onPressHandler()} ><Text>Login Now</Text></Button>
-        </View>
+    return (
+        <Container>
+            <Content contentContainerStyle={styles.container}>
+                <View style={styles.imageContainer}>
+                    <Image
+                        style={styles.image}
+                        source={require('../../assets/img/icon.png')}
+                    />
+                </View>
+                <Form>
+                    <View>
+                        {error ? (
+                            <FormMessage message={error} />
+                        ) : null}
+                    </View>
+                    <FormItem floatingLabel>
+                        <Label style={{marginBottom:20,paddingBottom:20}}>Email</Label>
+                        <Input keyboardType="email-address"
+                            style={styles.input}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={email => setEmail(email)}
+                            value={email} />
+                    </FormItem>
+                    <FormItem floatingLabel last>
+                        <Label>Password</Label>
+                        <Input
+                            style={styles.input}
+                            onChangeText={password => setPassword(password)}
+                            value={password}
+                            secureTextEntry={true} />
+                    </FormItem>
+                    <Text onPress={() => navigation.navigate('ForgetPassword')} style={styles.forgetPassLink}>Forget Password?</Text>
+                    {isLoading ? (
+                        <Spinner size="small" color="#000000" />
+                    ) : (
+                            <Button block
+                                style={styles.button}
+                                onPress={() => onClickLogin()}
+                            ><Text>Login</Text>
+                            </Button>
+                        )}
+                </Form>
+                <Text
+                    onPress={() => navigation.navigate('Register')}
+                    style={styles.signupText}>
+                    <Text
+                        style={styles.signupLink} >
+                        SignUp </Text>
+                    if You do not have an account
+                </Text>
+            </Content>
+        </Container>
     )
 }
-
-export default Login;

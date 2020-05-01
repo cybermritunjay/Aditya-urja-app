@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes'
-import {store} from '../../common/store'
+import { store } from '../../common/store';
+import api from '../api';
 const LoginAction = items => ({
     type: actionTypes.LOGIN,
     items,
@@ -14,14 +15,14 @@ export const logout = () => {
     return 'Success'
 }
 
-export const login = () => {
-    const data={
-        token:'Dummy irghpoeriht0y3q489yjf=0w[fjp]pfnja;',
-        user: {
-            id:"345646treg4w5",
-            email:'cybermritunjay@gmail.com'
-        }
+export const login = async (payload) => {
+    let res = await api(payload, 'login')
+    if (res.success) {
+        store.dispatch(LoginAction(res))
+        return res
+    } else {
+        return res
     }
-    store.dispatch(LoginAction(data))
-    return 'Success'
+
+
 }

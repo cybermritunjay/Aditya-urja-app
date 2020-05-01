@@ -40,8 +40,8 @@ checkInterNetConnection = () => {
 async componentDidMount() {
   await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
-      // lato: require('./assets/fonts/Lato-Regular.ttf'),
-      // latoBold: require('./assets/fonts/Lato-Bold.ttf'),
+       lato: require('./assets/fonts/Lato-Regular.ttf'),
+       latoBold: require('./assets/fonts/Lato-Bold.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
       ...Ionicons.font,
   });

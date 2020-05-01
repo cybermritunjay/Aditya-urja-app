@@ -4,7 +4,7 @@ import {TouchableOpacity} from 'react-native'
 import {View,Text } from 'native-base'
 import styles from '../styles';
 
-const CustomButton = ({navigation,name,link,underText,icon,iconType}) => {
+const CustomButton = ({navigation,name,link,underText,icon}) => {
     return (
     <TouchableOpacity
         style={styles.buttonContainer}

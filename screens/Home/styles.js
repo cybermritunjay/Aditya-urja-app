@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
     buttonTextSecendory: {
         letterSpacing: 0.1,
         color: '#002d73',
-        fontWeight: '700',
+        fontWeight: '400',
         fontFamily: 'lato',
-        fontSize: 12
+        fontSize: 11
 
     },
     helpTitle: {
@@ -52,18 +52,19 @@ const styles = StyleSheet.create({
     helpHeaderMain: {
         flexDirection: "row",
         padding: 16,
-        margin: 10,
+        margin:10,
         shadowColor: '#26282a1a',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 8,
-        justifyContent: "space-between",
-        backgroundColor: "#fff"
+        // justifyContent: "space-between",
+        backgroundColor: "#fff",
+        elevation:3
     },
     helpHeaderSeconery: {
         height: 30,
         maxWidth: 30,
         width: 30,
-        borderRadius: 20,
+        borderRadius: 15,
         marginRight: 12,
         backgroundColor: '#f5f8ff',
         justifyContent: 'center',

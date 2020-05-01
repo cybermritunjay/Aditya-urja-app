@@ -23,6 +23,5 @@ export const login = async (payload) => {
     } else {
         return res
     }
-
-
 }
+

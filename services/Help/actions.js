@@ -11,3 +11,4 @@ export const getSingleHelp = (payload) => {
 export const passIsHelpful = (payload) =>{
     return api(payload,'set-helpfull')
 }
+

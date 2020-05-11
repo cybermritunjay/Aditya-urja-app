@@ -4,15 +4,15 @@ const styles = StyleSheet.create({
     container:{
       justifyContent:'center',
       flex:1,
-      padding:32
-      
+      padding:32,
+      marginTop:12,
+      marginBottom:12
     },
     button:{
       marginTop: 20,
       alignSelf: 'center',
       alignItems:'center',
-      width: 150,
-      
+      width: 150
     
     },
     buttonText:{
@@ -25,19 +25,12 @@ const styles = StyleSheet.create({
     imageContainer:{
         alignItems:'center'
     },
-    forgetPassLink:{ 
-        color: '#4183c4', 
-        paddingTop: 5, 
-        fontSize: 12, 
-        paddingLeft: 15, 
-        textAlign: 'right' 
-    },
-    signupText:{ 
+    loginText:{ 
         paddingTop: 5, 
         fontSize: 13, 
         paddingLeft: 10 
     },
-    signupLink:{ 
+    loginLink:{ 
         color: '#4183c4', 
         fontSize: 14 
     },

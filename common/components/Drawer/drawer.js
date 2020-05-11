@@ -1,10 +1,11 @@
 import React from 'react'
 import {DrawerItem,  DrawerContentScrollView } from '@react-navigation/drawer';
-import { View, Title } from 'native-base';
+import {View} from 'react-native'
+import {  Title } from 'native-base';
 import styles from './styles'
 const CustomDrawer = (props) => {
     const navigation = props.navigation;
-    const routes = props.state.routeNames.slice(0, 2)
+    const routes = props.state.routeNames.slice(0, 3)
     return (
 
         <DrawerContentScrollView {...props}>
@@ -13,7 +14,7 @@ const CustomDrawer = (props) => {
             </View>
             {routes.map((val) => <DrawerItem
                 style={styles.individualItem}
-                label={val} onPress={() => navigation.navigate(val)} key={null} />)}
+                label={val} onPress={() => navigation.navigate(val)} key={val} />)}
         </DrawerContentScrollView>
     );
 

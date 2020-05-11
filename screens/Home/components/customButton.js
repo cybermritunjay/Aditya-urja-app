@@ -1,7 +1,6 @@
 import React from 'react';
 import {FontAwesome5} from '@expo/vector-icons'
-import {TouchableOpacity} from 'react-native'
-import {View,Text } from 'native-base'
+import {TouchableOpacity,View,Text} from 'react-native'
 import styles from '../styles';
 
 const CustomButton = ({navigation,name,link,underText,icon}) => {

@@ -3,7 +3,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../../screens/Login/login'
 import RegisterScreen from '../../screens/Register/register'
 import ForgetPasswordScreen from '../../screens/ForgetPassword/forgetPassword'
-import transitionConfig from '../../services/config/transactionConfig';
+import ResetPasswordScreen from '../../screens/ResetPassword/reset-password'
+import FPVerifyScreen from '../../screens/FPVerify/fp-verify'
+import VerifyUserScreen from '../../screens/VerifyAccount/verify-account'
+
 const AuthStack = createStackNavigator()
 
 const AuthNavigator = () => {
@@ -24,8 +27,20 @@ const AuthNavigator = () => {
                 component={RegisterScreen}
             />
             <AuthStack.Screen
-                name="ForgetPassword"
+                name="Forget Password"
                 component={ForgetPasswordScreen}
+            />
+            <AuthStack.Screen
+                name="Verify User"
+                component={VerifyUserScreen}
+            />
+            <AuthStack.Screen
+                name="FPVerify"
+                component={FPVerifyScreen}
+            />
+            <AuthStack.Screen
+                name="Reset Password"
+                component={ResetPasswordScreen}
             />
         </AuthStack.Navigator>
     )

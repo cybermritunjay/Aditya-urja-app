@@ -1,10 +1,10 @@
 import React from "react";
-import {Accordion, Icon, Text, View } from "native-base";
+import {Accordion, Icon } from "native-base";
+import {Text, View} from 'react-native'
 import styles from '../styles'
 var nav;
 var data = {}
 function HelpLinkContainer(props) {
-    console.log("Props From Help-Parent inside Home", props)
     nav = props.navigation
     data = [{
         title: props.title,
@@ -30,7 +30,7 @@ function HelpLinkContainer(props) {
     const _renderContent = (item) => {
         //console.log(item)
         return (
-            item.content.map(r => <Text onPress={() => nav.navigate('Help', { helpId: r._id })} style={{ backgroundColor: "#fff", marginLeft: 18, padding: 10, fontStyle: "italic", }}>{r.title}</Text>)
+            item.content.map(r => <Text key={r._id} onPress={() => nav.navigate('Help', { helpId: r._id })} style={styles.helpLinks}>{r.title}</Text>)
         );
     }
     return (

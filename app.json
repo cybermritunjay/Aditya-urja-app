@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "aditya-urja",
-    "slug": "aditya-urja",
+    "name": "aditya Urja",
+    "slug": "adityaurja",
     "platforms": [
-      "ios",
       "android",
       "web"
     ],
+    "privacy": "public",
+    "sdkVersion": "37.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,8 +22,11 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
+    "android": {
+      "package": "com.adityaurja.adityaurja",
+      "permissions": [
+        ""
+      ]
     }
   }
 }

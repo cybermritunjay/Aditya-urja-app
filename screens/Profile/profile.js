@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import InputItem from './components/input-Item';
 import FormMessage from '../../common/components/FormMessage/form-message';
 import {updateProfile} from '../../services/User/actions'
-import { Alert } from 'react-native';
+import FormSuccess from '../../common/components/FormSucces/form-success'
 import styles from './styles'
 const Profile = (props) => {
     const [loading, setLoading] = useState(false)
     const [error,setError] = useState(null)
+    const [success,setSuccess] = useState(null)
 
     const [name, setName] = useState(props.user.name ? props.user.name : '');
     const [editName, setEditName] = useState(false)
@@ -20,43 +21,43 @@ const Profile = (props) => {
     const [password, setPassword] = useState('*******');
     const [editPassword, setEditPassword] = useState(false)
 
-    const [house, setHouse] = useState(props.user.house ? props.user.house : '')
+    const [house, setHouse] = useState(props.user.address.house ? props.user.address.house : '')
     const [editHouse, setEditHouse] = useState(false)
 
-    const [street, setStreet] = useState(props.user.street ? props.user.street : '')
+    const [street, setStreet] = useState(props.user.address.street ? props.user.address.street : '')
     const [editStreet, setEditStreet] = useState(false)
 
-    const [city, setCity] = useState(props.user.city ? props.user.city : '')
+    const [city, setCity] = useState(props.user.address.city ? props.user.address.city : '')
     const [editCity, setEditCity] = useState(false)
 
-    const [state, setState] = useState(props.user.state ? props.user.state : '')
+    const [state, setState] = useState(props.user.address.state ? props.user.address.state : '')
     const [editState, setEditState] = useState(false)
 
-    const [pin, setPin] = useState(props.user.pin ? props.user.pin : '')
+    const [pin, setPin] = useState(props.user.address.pin ? props.user.address.pin : '')
     const [editPin, setEditPin] = useState(false)
 
     const validateProfileData = () =>{
         if(editName){
             if(name == ''){
                 return{
-                    isvalid=false,
-                    error = 'Name Cannot Be Empty'
+                    isvalid:false,
+                    error  :'Name Cannot Be Empty'
                 }
             }
         }
         if(editMobile){
             if(mobile == ''){
                 return{
-                    isValid=false,
-                    error = 'Mobile Cannot Be Empty'
+                    isValid:false,
+                    error : 'Mobile Cannot Be Empty'
                 }
             }
         }
         if(editPassword){
             if(password == ''){
                 return{
-                    isValid=false,
-                    error = 'Password Cannot Be Empty'
+                    isValid:false,
+                    error :'Password Cannot Be Empty'
                 }
             }
         }
@@ -69,25 +70,46 @@ const Profile = (props) => {
     const onClickUpdateProfile = () =>{
         setError('')
         setLoading(true)
+        setSuccess('')
         let valiadtion = validateProfileData()
         if(valiadtion.isvalid){
-            updateProfile({
+            let requestObject = {
                 token: props.token,
                 profile: {
                   name,
-                  email,
                   mobile,
                   address: {
                     house, street, city, state, pin
                   }
                 }
-            }).then(fetchResult =>{
+            }
+            if(editPassword){
+                requestObject={
+                    token:props.token,
+                    profile:{
+                        ...requestObject.profile,
+                        password:password
+                    }
+                }
+            }
+            updateProfile(requestObject).then(fetchResult =>{
                 if(fetchResult.success){
                     setLoading(false)
-                    Alert.alert('Success','Profile Updated Sucessfully')
+                    setError('')
+                    setSuccess('Profile Data Updated Successfully')
+                    setEditCity(false)
+                    setEditHouse(false)
+                    setEditStreet(false)
+                    setEditPin(false)
+                    setEditState(false)
+                    setEditMobile(false)
+                    setEditName(false)
+                    setEditPassword(false)
+                    setPassword('*******')
                 }else{
                     setLoading(false)
                     setError(fetchResult.error)
+                    setSuccess('')
                 }
             })
         }else{
@@ -106,6 +128,9 @@ const Profile = (props) => {
                     {error ? (
                             <FormMessage message={error} />
                         ) : null}
+                        {success ? (
+                            <FormSuccess message={success} />
+                        ) : null}
                         <Card >
                             <CardItem bordered>
                                 <View style={styles.cardViewContainer}>
@@ -113,13 +138,14 @@ const Profile = (props) => {
                                     <InputItem label='Name'
                                         value={name}
                                         setValue={setName}
-                                        edit={setEditName}
+                                        edit={editName}
                                         setEdit={setEditName} />
                                     <InputItem label='Mobile'
                                         value={mobile}
                                         setValue={setMobile}
                                         edit={editMobile}
-                                        setEdit={setEditMobile} />
+                                        setEdit={setEditMobile}
+                                        keyboard={'numeric'} />
                                     <InputItem label='Password'
                                         value={password}
                                         setValue={setPassword}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Image, View } from 'react-native';
-import { Container, Content, Button, Text, Form, Item as FormItem, Input, Label, Spinner } from 'native-base';
+import { Image, View,Text } from 'react-native';
+import { Container, Content, Button, Form, Item as FormItem, Input, Label, Spinner } from 'native-base';
 import FormMessage from '../../common/components/FormMessage/form-message';
 import { login } from '../../services/Auth/actions'
 import styles from './styles';
@@ -10,8 +10,19 @@ export default function Login({ navigation }) {
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const onClickLogin = async () => {
+        
         setLoading(true)
         setError('');
+        if(email ==''){
+            setLoading(false)
+            setError("Email Can Not Be Empty")
+            return
+        }
+        if(password ==''){
+            setLoading(false)
+            setError("Password Can Not Be Empty")
+            return
+        }
         let fetchResult = await login({ email, password })
         console.log(fetchResult)
         if (fetchResult.success) {
@@ -54,14 +65,14 @@ export default function Login({ navigation }) {
                             value={password}
                             secureTextEntry={true} />
                     </FormItem>
-                    <Text onPress={() => navigation.navigate('ForgetPassword')} style={styles.forgetPassLink}>Forget Password?</Text>
+                    <Text onPress={() => navigation.navigate('Forget Password')} style={styles.forgetPassLink}>Forget Password?</Text>
                     {isLoading ? (
                         <Spinner size="small" color="#000000" />
                     ) : (
                             <Button block
                                 style={styles.button}
                                 onPress={() => onClickLogin()}
-                            ><Text>Login</Text>
+                            ><Text style={styles.buttonText}>Login</Text>
                             </Button>
                         )}
                 </Form>

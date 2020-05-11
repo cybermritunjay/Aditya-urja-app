@@ -4,6 +4,9 @@ import HomeScreen from '../../screens/Home/home';
 import NewComplaintScreen from '../../screens/CreateComplaint/createComplaint'
 import ProfileScreen from '../../screens/Profile/profile';
 import HelpScreen from '../../screens/Help/help'
+import AllComplaintsScreen from '../../screens/AllComplaints/all-complaints'
+import SingleComplaintScreen from '../../screens/SingleComplaint/single-complaint'
+import ComplaintCreatedScreen from '../../screens/ComplaintCreated/complain-created'
 import CustomDrawer from '../components/Drawer/drawer'
 
 const MainDrawer = createDrawerNavigator()
@@ -21,12 +24,24 @@ const MainNavigator = () => {
                 component={NewComplaintScreen}
             />
             <MainDrawer.Screen
+                name='All Complaints'
+                component={AllComplaintsScreen}
+            />
+            <MainDrawer.Screen
                 name="Profile"
                 component={ProfileScreen}
             />
             <MainDrawer.Screen
                 name="Help"
                 component={HelpScreen}
+            />
+            <MainDrawer.Screen
+                name="Complaint"
+                component={SingleComplaintScreen}
+            />
+            <MainDrawer.Screen
+                name="Complaint Created"
+                component={ComplaintCreatedScreen}
             />
         </MainDrawer.Navigator>
     )

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Content, Header, Footer, Container, Text } from 'native-base';
+import { Content,Container } from 'native-base';
+import {Text} from 'react-native'
 import styles from './styles';
 import {
   ToastAndroid,
@@ -31,7 +32,7 @@ export default function TopicInfo(props) {
     if (helpResponse) {
       if (Platform.OS === 'android') {
         ToastAndroid.show("Response Already Recorded !", ToastAndroid.SHORT);
-      } else {
+      } else if(Platform.OS == 'ios') {
         AlertIOS.alert('Response Already Recorded', [
           {
             text: 'OK',
@@ -44,7 +45,6 @@ export default function TopicInfo(props) {
     setHelpResponse(true)
     if (res == "Yes") {
       passIsHelpful({ helpId: props.route.params.helpId, set: true }).then((data) => {
-        console.log(data)
         if (data.sussess) {
             if (Platform.OS === 'android') {
                 ToastAndroid.show("'Response Recorded Successfully' !", ToastAndroid.SHORT);

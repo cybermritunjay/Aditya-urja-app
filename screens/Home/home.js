@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, Container, Content, Spinner, View } from 'native-base';
+import {Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 import MainHeader from '../../common/components/Header/header'
 import styles from './styles'
@@ -7,7 +7,7 @@ import CustomButton from './components/customButton';
 import HelpLinkContainer from './components/help-link-container'
 import { getAllHelp } from '../../services/Help/actions'
 import CustomLoader from '../../common/components/Loading/loading'
-import { Alert } from 'react-native';
+import { Alert,View,Text} from 'react-native';
 
 const Home = (props) => {
     const [help, setHelp] = useState([])
@@ -32,14 +32,14 @@ const Home = (props) => {
                     <CustomButton
                         navigation={props.navigation}
                         name={'Submit a Ticket'}
-                        link={'NewComplaint'}
+                        link={'New Complaint'}
                         underText={'Submit a new issue to a department'}
                         icon={'edit'}
                     />
                     <CustomButton
                         navigation={props.navigation}
                         name={'View Existing Tickets'}
-                        link={'PreviousComplaint'}
+                        link={'All Complaints'}
                         underText={'View tickets you submitted in the past'}
                         icon={'file'}
                     />

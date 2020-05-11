@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
         shadowColor: '#26282a1a',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 8,
-        // justifyContent: "space-between",
-        backgroundColor: "#fff",
         elevation:3
     },
     helpHeaderSeconery: {
@@ -70,6 +68,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingBottom: 1,
         alignItems: 'center'
+    },
+    helpLinks:{ 
+        backgroundColor: "#fff", 
+        marginLeft: 18, 
+        padding: 10, 
+        fontStyle: "italic", 
+        fontFamily:'lato'
     }
 })
 

@@ -11,12 +11,13 @@ import InputSelect from "./components/input-select";
 import InputMessage from "./components/message-field";
 import { createNewComplaint, fetchBrands, fetchModels } from '../../services/Complaints/actions'
 import styles from './styles'
+const capacity =[{id:1,name:'100 LDP'},{id:2,name:'150 LDP'},{id:3,name:'200 LDP'},{id:4,name:'250 LDP'},{id:5,name:'300 LDP'},{id:6,name:'500 LDP'},{id:7,name:'Other'}]
+
 const NewComplaint = (props) => {
     const [loading, setLoading] = useState(true)
     const [blurLoader, setBlurLoader] = useState(false)
     const [error, setError] = useState(null)
     const [brands, setBrands] = useState({})
-    const [models, setModels] = useState({})
     const [body, setBody] = useState("")
     const [subject, setSubjected] = useState("")
     const [selectedBrand, setSelectedBrand] = useState(null)
@@ -30,7 +31,6 @@ const NewComplaint = (props) => {
     const [setExtras, setSetExtras] = useState(false)
     const [keyboardOpen, setKeyboardOpen] = useState(false)
     const [extrasKeyboardOpen, setExtrasKeyboardOpen] = useState(false)
-    const capacity =['100 LDP','150 LDP','200 LDP','250 LDP','300 LDP','500 LDP','Other']
     useEffect(() => {
         setLoading(true)
         fetchBrands().then((fetchedData) => {
@@ -45,11 +45,11 @@ const NewComplaint = (props) => {
         })
 
     }, [])
-    const onSelectBrand = (brand) => {
-        setSelectedBrand(brand)
+    const onSelectBrand = (bra) => {
+        setSelectedBrand(bra)
     }
-    const onSelectCapacity = (model) => {
-        setSelectedCapacity(model)
+    const onSelectCapacity = (cap) => {
+        setSelectedCapacity(cap)
     }
     const validateComplaintData = (data) => {
         if (data.subject == "") {
@@ -66,7 +66,7 @@ const NewComplaint = (props) => {
     }
 
     const getAddress = () => {
-        return 'Ashoka Garden'
+        return `${props.user.address.house},${props.user.address.street},${props.user.address.city},${props.address.state},${props.address.pin}`
     }
     const submitComplaint = () => {
         setBlurLoader(true)

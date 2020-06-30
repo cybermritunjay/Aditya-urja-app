@@ -64,16 +64,16 @@ const Home = (props) => {
                     />
                     <Text style={styles.warningText}>*Before Contacting With Us. Please Manually Check Your Model By Given Below Instructions.</Text>
                     <View style={[styles.productPicker,{borderWidth:1,borderStyle:'solid',borderColor:'#ccc'}]}>
-                    <Picker onValueChange={val => setSelectedValue(val)}>
+                    <Picker onValueChange={val => setSelectedValue(val)} selectedValue={selectedValue}>
                         <Picker.Item label='Select Poduct' value='' />
                         <Picker.Item label='Solar' value='Solar' />
                     </Picker>
                     {selectedValue == 'Solar'?(
                     <View style={{marginTop:10}}>
-                        <Text style={{padding:5}}>Check if overhead tank is full or empty.</Text>
-                        <Text style={{padding:5}}>Check solar water heater inlet water supply.</Text>
-                        <Text style={{padding:5}}>Check solar water heater outlet water supply.</Text>
-                        <Text style={{padding:5}}>Keep inlet valve of water supply of solar water heater close from 11am to 4pm.</Text>
+                        <Text style={{padding:10,fontWeight: "900", fontSize: 20, fontFamily: 'latoBold', color: '#002d73'}}>Check if overhead tank is full or empty.</Text>
+                        <Text style={{padding:10,fontWeight: "900", fontSize: 20, fontFamily: 'latoBold', color: '#002d73'}}>Check solar water heater inlet water supply.</Text>
+                        <Text style={{padding:10,fontWeight: "900", fontSize: 20, fontFamily: 'latoBold', color: '#002d73'}}>Check solar water heater outlet water supply.</Text>
+                        <Text style={{padding:10,fontWeight: "900", fontSize: 20, fontFamily: 'latoBold', color: '#002d73'}}>Keep inlet valve of water supply of solar water heater close from 11am to 4pm.</Text>
                     </View>
                     ):null}
                     </View>

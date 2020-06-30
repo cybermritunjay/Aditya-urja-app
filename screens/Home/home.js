@@ -12,6 +12,7 @@ import {Picker,PickerIOS} from 'react-native'
 const Home = (props) => {
     const [help, setHelp] = useState([])
     const [loading, setLoading] = useState(true)
+    const [selectedValue,setSelectedValue]= useState('')
 
     const backHandler = () => {
         Alert.alert(
@@ -63,10 +64,18 @@ const Home = (props) => {
                     />
                     <Text style={styles.warningText}>*Before Contacting With Us. Please Manually Check Your Model By Given Below Instructions.</Text>
                     <View style={[styles.productPicker,{borderWidth:1,borderStyle:'solid',borderColor:'#ccc'}]}>
-                    <Picker>
+                    <Picker onValueChange={val => setSelectedValue(val)}>
                         <Picker.Item label='Select Poduct' value='' />
                         <Picker.Item label='Solar' value='Solar' />
                     </Picker>
+                    {selectedValue == 'Solar'?(
+                    <View style={{marginTop:10}}>
+                        <Text style={{padding:5}}>Check if overhead tank is full or empty.</Text>
+                        <Text style={{padding:5}}>Check solar water heater inlet water supply.</Text>
+                        <Text style={{padding:5}}>Check solar water heater outlet water supply.</Text>
+                        <Text style={{padding:5}}>Keep inlet valve of water supply of solar water heater close from 11am to 4pm.</Text>
+                    </View>
+                    ):null}
                     </View>
                     {/* <Text style={styles.helpTitle} >Hello, How Can We Help?</Text> */}
                     {/* {help ? Object.entries(help).map(([key, value]) => <HelpLinkContainer style={styles.helpParent} key={key} navigation={props.navigation} title={key} dat={value} />) : null} */}

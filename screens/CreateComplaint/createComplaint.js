@@ -20,7 +20,8 @@ const NewComplaint = (props) => {
     const [body, setBody] = useState("")
     const [subject, setSubjected] = useState("")
     const [selectedBrand, setSelectedBrand] = useState(null)
-    const [selectedModel, setSelectedModel] = useState(null)
+    const [model, setModel] = useState('')
+    const [selectedcapacity,setSelectedCapacity] = useState(null)
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [openExtras, setOpenExtras] = useState(false)
     const [email, setEmail] = useState('')
@@ -29,7 +30,7 @@ const NewComplaint = (props) => {
     const [setExtras, setSetExtras] = useState(false)
     const [keyboardOpen, setKeyboardOpen] = useState(false)
     const [extrasKeyboardOpen, setExtrasKeyboardOpen] = useState(false)
-
+    const capacity =['100 LDP','150 LDP','200 LDP','250 LDP','300 LDP','500 LDP','Other']
     useEffect(() => {
         setLoading(true)
         fetchBrands().then((fetchedData) => {
@@ -45,29 +46,16 @@ const NewComplaint = (props) => {
 
     }, [])
     const onSelectBrand = (brand) => {
-        setBlurLoader(true)
         setSelectedBrand(brand)
-        setError('')
-        fetchModels({ brandId: brand })
-            .then((fetchedData) => {
-                if (fetchedData.success) {
-                    setModels(fetchedData.models)
-                    setBlurLoader(false)
-                } else {
-                    setError(fetchedData.error)
-                    setBlurLoader(false)
-                }
-
-            })
     }
-    const onSelectModel = (model) => {
-        setSelectedModel(model)
+    const onSelectCapacity = (model) => {
+        setSelectedCapacity(model)
     }
     const validateComplaintData = (data) => {
         if (data.subject == "") {
             setError("You Must Enter A Subject")
             return false;
-        } else if (data.model == null) {
+        } else if (data.capacity == null) {
             setError("You Must Select a Model")
             return false;
         } else if (data.body == "") {
@@ -84,18 +72,19 @@ const NewComplaint = (props) => {
         setBlurLoader(true)
         setIsSubmitted(true)
         setError("")
-        if (!validateComplaintData({ subject, model: selectedModel, body })) {
+        if (!validateComplaintData({ subject, capacity: selectedcapacity, body })) {
             setBlurLoader(false)
             setIsSubmitted(false)
             return
         }
-        createNewComplaint({ user: props.user._id, subject, model: selectedModel, body, email: email ? email : '', mobile: mobile ? mobile : '', address: address ? address : getAddress() })
+        createNewComplaint({ user: props.user._id,product:selectedBrand, subject, model: model,capacity:selectedcapacity, body, email: email ? email : '', mobile: mobile ? mobile : '', address: address ? address : getAddress() })
             .then((data) => {
                 if (data.success) {
                     setLoading(true)
                     setBlurLoader(false)
                     setError(null)
-                    setSelectedModel(null)
+                    setModel('')
+                    setSelectedCapacity(null)
                     setSelectedBrand(null)
                     setOpenExtras(false)
                     setEmail('')
@@ -200,13 +189,17 @@ const NewComplaint = (props) => {
                                 data={brands}
                                 selectFunction={onSelectBrand} />
 
-                            {selectedBrand && !blurLoader ? (
                                 <InputSelect
-                                    name="Product Model"
-                                    selection={selectedModel}
-                                    data={models}
-                                    selectFunction={onSelectModel}
-                                />) : null}
+                                    name="Product Capacity"
+                                    selection={selectedcapacity}
+                                    data={capacity}
+                                    selectFunction={onSelectCapacity}
+                                />
+                            <InputField 
+                                name='Product Model(Optional)'
+                                setFunction={setModel}
+                                value = {model}
+                                type={'default'} />
                             <InputMessage
                                 value={body}
                                 setFunction={setBody}

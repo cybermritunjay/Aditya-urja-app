@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     container:{
         padding:25,
         backgroundColor:'#fff',
-
+        flex:1
     },
     ticketDetailsCard:{
         backgroundColor:'#fff',
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         shadowOffset:{width:0,height:4},
         shadowOpacity:8,
         borderRadius:10,
-        padding:16
+        padding:16,
+        elevation:3
     },
     ticketDetailSecendory:{
         fontFamily:'latoBold'
@@ -34,6 +35,13 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         marginBottom:8
+    },
+    ticketAction:{
+        display:'flex',
+        flexDirection:'row',
+        marginBottom:8,
+        marginTop:8,
+       
     },
     actions:{
         margin:10,

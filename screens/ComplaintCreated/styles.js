@@ -33,7 +33,11 @@ const styles = StyleSheet.create({
     },
     viewTicketButton:{
         width: 160,
-    marginTop: 15
+    marginTop: 15,
+    display:'flex',
+    justifyContent:'center',
+    alignItems:'center',
+    
     },
     spamText:{
         fontWeight:'400',

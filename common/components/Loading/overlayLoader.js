@@ -5,7 +5,7 @@ import styles from './styles'
 const CustomLoader = () => {
 
     return (
-        <View style={styles.loadingContainer}>
+    <View style={[styles.loadingContainer,{position:'absolute',top:0,bottom:0,left:0,right:0,zIndex:999}]}>
         <ActivityIndicator size="large" color="#0000ff" />
     </View>
     );

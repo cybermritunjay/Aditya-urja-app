@@ -28,15 +28,15 @@ const styles = StyleSheet.create({
     loginText:{ 
         paddingTop: 5, 
         fontSize: 13, 
-        paddingLeft: 10 
     },
     loginLink:{ 
-        color: '#4183c4', 
-        fontSize: 14 
+         color: '#4183c4', 
+        fontSize: 14 ,
+        paddingTop:5,
+        paddingLeft: 10 
+
     },
     input:{
-        marginBottom:5,
-        marginTop:10
     }
 })
 export default styles

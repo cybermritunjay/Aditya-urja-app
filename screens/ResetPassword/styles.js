@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     button:{
       marginTop: 20,
       alignSelf: 'center',
-      width: 200,
+      width: 250,
     },
     input:{
       marginBottom:5,

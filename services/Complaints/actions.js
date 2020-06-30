@@ -18,3 +18,7 @@ export const fetchModels = (payload) =>{
 export const getSingleComplaint = (payload) =>{
     return api(payload,'single-complaint');
 }
+
+export const sendReply = (payload)=>{
+    return api(payload,'send-complaint-reply');
+}

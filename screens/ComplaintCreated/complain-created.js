@@ -15,7 +15,7 @@ export default function ComplaintCreated( props ) {
         <Text style={styles.submittedSecondory}>Your ticket has been successfully submitted! Ticket ID: <Text style={styles.ticket}>{props.route.params.complaintID}</Text></Text>
         <Text style={styles.noConfirmation}>{"\n"}No confirmation email?</Text>
         <Text style={styles.spamText}>We sent a confirmation message to your email address. If you do not receive it within a few minutes, please check your Junk, Bulk or Spam folders. Mark the message as Not SPAM to avoid problems receiving our correspondence in the future.</Text>
-        <Button style={styles.viewTicketButton} onPress={() => props.navigation.navigate('Complaint',{id:props.route.params.complaintID})}><Text>View Your Ticket</Text></Button>
+        <Button style={styles.viewTicketButton} onPress={() => props.navigation.navigate('Complaint',{id:props.route.params.complaintID})}><Text style={{color:'#fff'}}>View Your Ticket</Text></Button>
       </View>
     </Content>
     </Container>

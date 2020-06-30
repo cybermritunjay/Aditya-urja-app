@@ -35,11 +35,13 @@ const styles = StyleSheet.create({
     signupText:{ 
         paddingTop: 5, 
         fontSize: 13, 
-        paddingLeft: 10 
     },
     signupLink:{ 
         color: '#4183c4', 
-        fontSize: 14 
+        fontSize: 14 ,
+        paddingTop:5,
+        paddingLeft: 10 
+
     },
     input:{
         marginBottom:5,

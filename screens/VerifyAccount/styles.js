@@ -1,45 +1,44 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    container:{
-      justifyContent:'center',
-      flex:1,
-      padding:32
-    },
-    button:{
-      marginTop: 20,
-      alignSelf: 'center',
-      width: 200,
-      paddingLeft:40
-    },
-    buttonText:{
-      color:'#fff'
+  container: {
+    justifyContent: 'center',
+    flex: 1,
+    padding: 32
   },
-    error: {
-      color: 'red',
-      marginBottom: 20,
-    },
-    otpRow:{
-      marginTop:12,
-      flexDirection: 'row',
-      alignItems: 'center',
+  button: {
+    marginTop: 20,
+    alignSelf: 'center',
+    width: 200,
   },
-  InputContainer:{
-      marginRight:12,
-      flex: 1,
+  buttonText: {
+    color: '#fff',
   },
-  Input:{
+  error: {
+    color: 'red',
+    marginBottom: 20,
+  },
+  otpRow: {
+    marginTop: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  InputContainer: {
+    marginRight: 12,
+    flex: 1,
+  },
+  Input: {
     textAlign: 'center',
     fontWeight: 'bold',
     color: '#1c1c1e',
-    borderColor:"#a5c7fe",
-    borderWidth:2,
-    borderStyle:'solid',
+    borderColor: "#a5c7fe",
+    borderWidth: 2,
+    borderStyle: 'solid',
     fontSize: 18,
     width: '100%',
-    marginLeft:5,
-    marginRight:5
+    marginLeft: 5,
+    marginRight: 5
   }
-  })
+})
 
-  export default styles;
+export default styles;

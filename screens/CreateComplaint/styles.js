@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         fontSize:14
     },
     form:{
+        flex:1,
         margin:15,
         paddingTop:25,
         paddingBottom:25,
@@ -60,6 +61,25 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           marginBottom: 20,
       },
+    extrasContainer:{
+        position: 'absolute',
+        top: 100,
+        left: 0,
+        right: 0,
+        zIndex: 999,
+        margin: 16,
+    },
+    extrasHeader:{
+        padding:5,
+        display:'flex',
+        justifyContent: 'flex-end',
+    },
+    openExtrasButton:{
+        marginBottom:16,
+        backgroundColor:'#eb9e3e',
+        padding:10,
+        justifyContent:'center'
+    }
   })
 
   export default styles;

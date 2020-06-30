@@ -59,7 +59,7 @@ export default function TopicInfo(props) {
         }
         
         }).catch((err) => {
-        console.log(err)
+        //console.log(err)
       })
     } else if (res == "No") {
       passIsHelpful({ helpId: props.route.params.helpId, set: false }).then((responce) => responce.json()).then((data) => {
@@ -71,7 +71,7 @@ export default function TopicInfo(props) {
           })
         }
       }).catch((err) => {
-        console.log(err)
+        //console.log(err)
       })
     }
   }

@@ -5,7 +5,7 @@ import {  Title } from 'native-base';
 import styles from './styles'
 const CustomDrawer = (props) => {
     const navigation = props.navigation;
-    const routes = props.state.routeNames.slice(0, 3)
+    const routes = props.state.routeNames.slice(0, 5)
     return (
 
         <DrawerContentScrollView {...props}>
@@ -14,6 +14,7 @@ const CustomDrawer = (props) => {
             </View>
             {routes.map((val) => <DrawerItem
                 style={styles.individualItem}
+            
                 label={val} onPress={() => navigation.navigate(val)} key={val} />)}
         </DrawerContentScrollView>
     );

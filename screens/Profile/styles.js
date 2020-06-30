@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         margin:5
     },
     input:{
-        paddingTop:19
+        flex:1,
+        padding:10
     }
 })
 export default styles

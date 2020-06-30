@@ -75,7 +75,14 @@ const styles = StyleSheet.create({
         padding: 10, 
         fontStyle: "italic", 
         fontFamily:'lato'
-    }
+    },
+    warningText:{
+        margin:16,
+        color:'red'
+    },
+    productPicker:{
+        margin:16
+        }
 })
 
 export default styles;

@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Image, View,Text } from 'react-native';
 import { Container, Content, Button, Form, Item as FormItem, Input, Label, Spinner } from 'native-base';
 import FormMessage from '../../common/components/FormMessage/form-message';
 import { login } from '../../services/Auth/actions'
 import styles from './styles';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    useEffect(()=>{
+        //console.log('component willmount')
+        return function cleanup(){
+          setEmail('')
+          setPassword('')
+          setLoading(false)
+          setError(null)
+          //console.log("Login Exit")
+        }
+      },[])
     const onClickLogin = async () => {
         
         setLoading(true)
@@ -24,12 +35,16 @@ export default function Login({ navigation }) {
             return
         }
         let fetchResult = await login({ email, password })
-        console.log(fetchResult)
+        //console.log(fetchResult)
         if (fetchResult.success) {
             setError('')
             setLoading(false)
+            if(!fetchResult.user.isVarified){
+                navigation.navigate('Verify User', { email:fetchResult.user.email,mobile:fetchResult.user.mobile, userId: fetchResult.user._id, otp: fetchResult.user.resetOTP })
+            }
+
         } else {
-            setError(fetchResult.error)
+            setError(fetchResult.message)
             setLoading(false)
         }
     }
@@ -76,14 +91,12 @@ export default function Login({ navigation }) {
                             </Button>
                         )}
                 </Form>
-                <Text
-                    onPress={() => navigation.navigate('Register')}
-                    style={styles.signupText}>
-                    <Text
-                        style={styles.signupLink} >
-                        SignUp </Text>
-                    if You do not have an account
-                </Text>
+                <View style={{display:'flex',flexDirection:'row',alignItems:'center'}}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                            <Text style={styles.signupLink} >SignUp </Text>
+                        </TouchableOpacity>
+                    <Text style={styles.signupText}>if You do not have an account </Text>
+            </View>
             </Content>
         </Container>
     )

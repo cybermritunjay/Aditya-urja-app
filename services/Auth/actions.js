@@ -19,7 +19,7 @@ export const login = async (payload) => {
     let res = await api(payload, 'login')
     if (res.success) {
         //if user not active redirect to activatioin field with userid and mobile after that set is active true 
-        //console.log(res)
+        ////console.log(res)
         store.dispatch(LoginAction(res))
         return res
     } else {
@@ -46,3 +46,7 @@ export const resetPassword = (payload)=>{
     return api(payload,'recover-password')
 }
 
+
+export const resendOTP = (payload) =>{
+    return api(payload,'resend-otp')
+}

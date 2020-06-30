@@ -4,6 +4,7 @@ import { Container, Content, Button, Form, Item as FormItem, Input, Label,Spinne
 import styles from './styles';
 import FormMessage from '../../common/components/FormMessage/form-message';
 import {forgetPassword} from '../../services/Auth/actions'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 export default function ForgetPassword({navigation}) {
     const [email,setEmail] = useState('')
     const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ export default function ForgetPassword({navigation}) {
           if (data.success){
             setError('');
             setLoading(false)
-            navigation.navigate('FPVerify',{user:email,otp:data.otp})
+            navigation.navigate('FPVerify',{user:email,otp:data.otp,mobile:data.mobile})
         }
         else{
             setError(data.error)
@@ -65,7 +66,11 @@ export default function ForgetPassword({navigation}) {
               )}
 
           </Form>
-          <Text style={styles.signupText} onPress={() => navigation.navigate('Register')} ><Text style={styles.signupLink} >SignUp</Text> if You do not have an account</Text>
+          <View style={{display:'flex',flexDirection:'row'}}>
+          
+            <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text style={styles.signupLink} >SignUp</Text></TouchableOpacity>
+            <Text style={styles.signupText} > if You do not have an account</Text>
+            </View>
         </Content>
     </Container>
     )

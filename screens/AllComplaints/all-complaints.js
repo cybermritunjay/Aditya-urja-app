@@ -1,7 +1,7 @@
 import React,{ useState, useEffect } from "react"
 import { connect } from 'react-redux';
 
-import { Alert,Text} from "react-native"
+import { Alert,Text, TouchableOpacity} from "react-native"
 import { Container, Content, Body, Card, CardItem, Icon } from "native-base"
 import styles from './styles';
 
@@ -13,15 +13,20 @@ import CustomLoader from "../../common/components/Loading/loading";
 const AllComplaints = (props) =>{
     const [complaint,setComplaint] = useState([])
     const [loading,setLoading] = useState(true)
-    useEffect(() =>{
+
+    const fetchComplaints = () =>{
         getAllComplaints({userId:props.user._id}).then((fetchedData) =>{
             if(fetchedData.success){
                 setComplaint(fetchedData.complaints)
                 setLoading(false)
             }else{
-                Alert.alert("Something Went Wrong","Opps!!! Looks Like Something is Wrong With Fething All Complaints")
+                Alert.alert("Something Went Wrong","Opps!!! Looks Like Something is Wrong With Getting All Complaints")
             }
         })
+    }
+    useEffect(() =>{
+       fetchComplaints()
+       return setComplaint('')
     },[])
 
     return(
@@ -34,10 +39,13 @@ const AllComplaints = (props) =>{
                 <Card>
                     <CardItem>
                         <Body style={styles.mainBody} >
+                            <TouchableOpacity style={{flexDirection:'row',alignItems:'center'}} onPress={() => {setLoading(true); fetchComplaints()}}>
                             <Icon style={styles.mainIcon} name='reload' type='MaterialCommunityIcons' />
-                            <Text onPress={() =>{ props.navigation.navigate('All Complaints')}}>
+                            <Text >
                                 Reload This Page
                             </Text>
+                            </TouchableOpacity>
+                            
                         </Body>
                     </CardItem>
                 </Card>
@@ -49,7 +57,7 @@ const AllComplaints = (props) =>{
 }
 
 const mapStateToProps = (state) => {
-    //console.log(state)
+    ////console.log(state)
     return {
       user: state.AuthReducer.user,
       token: state.AuthReducer.token

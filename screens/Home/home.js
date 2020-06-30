@@ -1,27 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import {Container, Content } from 'native-base';
+import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 import MainHeader from '../../common/components/Header/header'
-import styles from './styles'
+import styles from './styles';
 import CustomButton from './components/customButton';
-import HelpLinkContainer from './components/help-link-container'
-import { getAllHelp } from '../../services/Help/actions'
+// import HelpLinkContainer from './components/help-link-container'
+// import { getAllHelp } from '../../services/Help/actions'
 import CustomLoader from '../../common/components/Loading/loading'
-import { Alert,View,Text} from 'react-native';
-
+import { Alert, View, Text, BackHandler } from 'react-native';
+import {Picker,PickerIOS} from 'react-native'
 const Home = (props) => {
     const [help, setHelp] = useState([])
     const [loading, setLoading] = useState(true)
 
+    const backHandler = () => {
+        Alert.alert(
+          'Exit App',
+          'Do you want to exit?',
+          [
+            {text: 'No', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: 'Yes', onPress: () => BackHandler.exitApp()},
+          ],
+          { cancelable: false });
+          return true;
+      }
     useEffect(() => {
-        getAllHelp().then((fetchResult) => {
-            if (fetchResult.success) {
-                setHelp(fetchResult.helps)
-                setLoading(false)
-            } else {
-                Alert.alert("Opps!!", "This is Really Emberacing But Something Went Wrong. Kindly Restart The App.")
-            }
-        })
+        if(!props.user.address){
+            props.navigation.navigate('Address')
+        }
+        const backListner = BackHandler.addEventListener('hardwareBackPress',backHandler)
+        setLoading(false)
+        // getAllHelp().then((fetchResult) => {
+        //     if (fetchResult.success) {
+        //         setHelp(fetchResult.helps)
+        //         setLoading(false)
+        //     } else {
+
+        //         Alert.alert("Opps!!", "This is Really Emberacing But Something Went Wrong. Kindly Restart The App.")
+        //     }
+        // })
+        return () => backListner.remove()
     }, [])
     return (loading ? (
         <CustomLoader />
@@ -43,8 +61,15 @@ const Home = (props) => {
                         underText={'View tickets you submitted in the past'}
                         icon={'file'}
                     />
-                    <Text style={styles.helpTitle} >Hello, How Can We Help?</Text>
-                    {help ? Object.entries(help).map(([key, value]) => <HelpLinkContainer style={styles.helpParent} key={key} navigation={props.navigation} title={key} dat={value} />) : null}
+                    <Text style={styles.warningText}>*Before Contacting With Us. Please Manually Check Your Model By Given Below Instructions.</Text>
+                    <View style={[styles.productPicker,{borderWidth:1,borderStyle:'solid',borderColor:'#ccc'}]}>
+                    <Picker>
+                        <Picker.Item label='Select Poduct' value='' />
+                        <Picker.Item label='Solar' value='Solar' />
+                    </Picker>
+                    </View>
+                    {/* <Text style={styles.helpTitle} >Hello, How Can We Help?</Text> */}
+                    {/* {help ? Object.entries(help).map(([key, value]) => <HelpLinkContainer style={styles.helpParent} key={key} navigation={props.navigation} title={key} dat={value} />) : null} */}
                 </Content>
             </Container>
         )

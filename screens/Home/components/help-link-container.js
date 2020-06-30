@@ -28,7 +28,7 @@ function HelpLinkContainer(props) {
         );
     };
     const _renderContent = (item) => {
-        //console.log(item)
+        ////console.log(item)
         return (
             item.content.map(r => <Text key={r._id} onPress={() => nav.navigate('Help', { helpId: r._id })} style={styles.helpLinks}>{r.title}</Text>)
         );

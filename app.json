@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "aditya Urja",
-    "slug": "adityaurja",
+    "name": "Dorsun",
+    "slug": "Dorsun",
     "platforms": [
       "android",
       "web"
     ],
     "privacy": "public",
-    "sdkVersion": "37.0.0",
+    "sdkVersion": "36.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +23,7 @@
       "**/*"
     ],
     "android": {
-      "package": "com.adityaurja.adityaurja",
+      "package": "com.dorsun.dorsun",
       "permissions": [
         ""
       ]

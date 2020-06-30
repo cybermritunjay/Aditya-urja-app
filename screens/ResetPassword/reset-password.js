@@ -19,18 +19,13 @@ export default function ResetPassword(props) {
       setError('Password and Confirm Password do not match !!')
       return
     }
-    useEffect(()=>{
 
-      return () =>{
-        setCpassword('')
-        setPassword('')
-        setLoading(false)
-      }
-    },[])
     resetPassword({ email: props.route.params.user, password }).then((data) => {
       if (data.success) {
         setError('');
         setLoading(false)
+        setCpassword('')
+        setPassword('')
         Alert.alert(
           'Password Changed Sucessfull',
           'Your Password Hasbeen Changed SucessFully. You Can Now Login',
@@ -46,6 +41,7 @@ export default function ResetPassword(props) {
       }
     })
   }
+
   return (
     <Container>
       <Content contentContainerStyle={styles.container}>
